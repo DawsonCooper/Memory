@@ -1,0 +1,16 @@
+.cards-wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+}
+.card{
+    margin: 1rem;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: all 0.15s linear;
+}
+
+@media (min-width: 1921px){
+    .cards-wrapper{
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
