@@ -11,13 +11,14 @@ img{
 
 .character-wrapper{
     height: 35vh;
+    font-family: 'Courier New', Courier, monospace;
     padding: 1rem;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: black;
+    color: rgba(240, 46, 170);
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 10px;
@@ -27,4 +28,10 @@ img{
 .character-wrapper:hover{
     opacity: 1;
     box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+@media (max-width: 768px){
+    .character-wrapper{
+        height: 20vh;
+        width: 65vw;
+    }
 }

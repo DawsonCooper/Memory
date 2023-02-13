@@ -3,6 +3,8 @@
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 }
 .card{
+    display: flex;
+    justify-content: center;
     margin: 1rem;
     border: 1px solid transparent;
     border-radius: 10px;
@@ -12,5 +14,10 @@
 @media (min-width: 1921px){
     .cards-wrapper{
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+}
+@media (min-width: 786px){
+    .card{
+        display: block;
     }
 }

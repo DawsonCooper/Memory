@@ -9,7 +9,7 @@ export default function Scoreboard (props){
         <div className='scoreboard'>
             <h4>Score: {props.score}</h4> 
             <h4>Personal Best: {props.personalBest}</h4>
-            <h4>Max Score: 12</h4>           
+            <h4>Max: 12</h4>           
         </div>
     )
 }

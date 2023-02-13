@@ -1,6 +1,6 @@
 import React from 'react';
 import Scoreboard from './Scoreboard';
-
+import '../styles/Header.css';
 // Simply a header since scoreboard will be here we will need to pass state from another comp into props so we can pass to scoreboard
 
 export default function Header (props){
