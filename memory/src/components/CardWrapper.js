@@ -5,42 +5,78 @@ import '../styles/Card.css';
 export default function CardWrapper(props){
     const {score, best, itemClicked} = props
     let cardArray =[
-        [(<div key='1' onClick={() => {itemClicked(1)}} className='card'>
-            <Character  key='1' image={require('../media/japan.jpg')} alternative='Tokyo' charHead='Tokyo, Japan'/>
-        </div>)],
-        [(<div key='2' onClick={() => {itemClicked(2)}} className='card'>
-            <Character key='2' image={require('../media/czech.jpg')} alternative='Prague' charHead='Prague, Czech'/>
-        </div>)],
-        [(<div key='3' onClick={() => {itemClicked(3)}} className='card'>
-            <Character key='3' image={require('../media/france.jpg')} alternative='Paris' charHead='Paris, France'/>
-        </div>)],
-        [(<div key='4' onClick={() => {itemClicked(4)}} className='card'>
-            <Character key='4' image={require('../media/italy.jpg')} alternative='Rome' charHead='Rome, Italy'/>
-        </div>)],
-        [(<div key='5' onClick={() => {itemClicked(5)}} className='card'>
-            <Character key='5' image={require('../media/newzealand.jpg')} alternative='Wellington' charHead='Wellington, New Zealand'/>
-        </div>)],
-        [(<div key='6' onClick={() => {itemClicked(6)}} className='card'>
-            <Character key='6' image={require('../media/norway.jpg')} alternative='Oslo' charHead='Oslo, Norway'/>
-        </div>)],
-        [(<div key='7' onClick={() => {itemClicked(7)}} className='card'>
-            <Character key='7' image={require('../media/poland.jpg')} alternative='Warsaw' charHead='Warsaw, Poland'/>
-        </div>)],
-        [(<div key='8' onClick={() => {itemClicked(8)}} className='card'>
-            <Character key='8' image={require('../media/spain.jpg')} alternative='Madrid' charHead='Madrid, Spain'/>
-        </div>)],
-        [(<div key='9' onClick={() => {itemClicked(9)}} className='card'>
-            <Character key='9' image={require('../media/sweeden.jpg')} alternative='Stockholm' charHead='Stockholm, Sweeden'/>
-        </div>)],
-        [(<div key='10' onClick={() => {itemClicked(10)}} className='card'>
-            <Character key='10' image={require('../media/switzerland.jpg')} alternative='Bern' charHead='Bern, Switzerland'/>
-        </div>)],
-        [(<div key='11' onClick={() => {itemClicked(11)}} className='card'>
-            <Character key='11' image={require('../media/ukraine.jpg')} alternative='Kiev' charHead='Kiev, Ukraine'/>
-        </div>)],
-        [(<div key='12' onClick={() => {itemClicked(12)}} className='card'>
-            <Character key='12' image={require('../media/UnitedKingdom.jpg')} alternative='London' charHead='London, United Kingdom'/>
-        </div>)] 
+        {
+            key: '1',
+            image: require('../media/japan.jpg'),
+            alt: 'Tokyo',
+            charHead: 'Tokyo, Japan'
+        },
+        {
+            key: '2',
+            image: require('../media/czech.jpg'),
+            alt: 'Prague',
+            charHead: 'Prague, Czech'
+        },
+        {
+            key: '3',
+            image: require('../media/france.jpg'),
+            alt: 'Paris',
+            charHead: 'Paris, France'
+        },
+        {
+            key: '4',
+            image: require('../media/italy.jpg'),
+            alt: 'Rome',
+            charHead: 'Rome, Italy'
+        },
+        {
+            key: '5',
+            image: require('../media/newzealand.jpg'),
+            alt: 'Wellington',
+            charHead: 'Wellington, New Zealand'
+        },
+        {
+            key: '6',
+            image: require('../media/norway.jpg'),
+            alt: 'Oslo',
+            charHead: 'Oslo, Norway'
+        },
+        {
+            key: '7',
+            image: require('../media/poland.jpg'),
+            alt: 'Warsaw',
+            charHead: 'Warsaw, Poland'
+        },
+        {
+            key: '8',
+            image: require('../media/spain.jpg'),
+            alt: 'Madrid',
+            charHead: 'Madrid, Spain'
+        },
+        {
+            key: '9',
+            image: require('../media/sweeden.jpg'),
+            alt: 'Stockholm',
+            charHead: 'Stockholm, Sweeden'
+        },
+        {
+            key: '10',
+            image: require('../media/switzerland.jpg'),
+            alt: 'Bern',
+            charHead: 'Bern, Switzerland'
+        },
+        {
+            key: '11',
+            image: require('../media/ukraine.jpg'),
+            alt: 'Kiev',
+            charHead: 'Kiev, Ukraine'
+        },
+        {
+            key: '12',
+            image: require('../media/UnitedKingdom.jpg'),
+            alt: 'London',
+            charHead: 'London, United Kingdom'
+        }
     ];
     const [cards, modCards] = useState([])
     useEffect(() => {
@@ -63,10 +99,14 @@ export default function CardWrapper(props){
         console.log('cardArr', cardArray)
         console.log('--------------------------------------')
     },[score, best])
-
     return (
         <section className='cards-wrapper'>
-            {cards}
+            {cards.map((card) =>(
+                <div className='card'>
+                        <Character onClick={() => {itemClicked(card.key)}} key={card.key} image={ card.image } alternative={card.alt} charHead={card.charHead} />
+                </div>
+                )
+            )}
         </section>
     )
 }
