@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "5aa3083d739f215cab1a",
-    "url": "/Memory/static/css/main.a8bb05a9.chunk.css"
+    "revision": "14f21c0b576ee34142e4",
+    "url": "/Memory/static/css/main.a43e2296.chunk.css"
   },
   {
-    "revision": "5aa3083d739f215cab1a",
-    "url": "/Memory/static/js/main.5aa3083d.chunk.js"
+    "revision": "14f21c0b576ee34142e4",
+    "url": "/Memory/static/js/main.14f21c0b.chunk.js"
   },
   {
     "revision": "a89266deb73d87b01859",
@@ -68,7 +68,7 @@ self.__precacheManifest = [
     "url": "/Memory/static/media/UnitedKingdom.ec2c682b.jpg"
   },
   {
-    "revision": "6ccef6957e78916a5d92557396044396",
+    "revision": "8bd12e7d29ea11662f2b1bcc1e7dbfbc",
     "url": "/Memory/index.html"
   }
 ];
