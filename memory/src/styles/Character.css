@@ -31,7 +31,7 @@ img{
 }
 @media (max-width: 768px){
     .character-wrapper{
-        height: 20vh;
+        height: 40vh;
         width: 65vw;
     }
 }

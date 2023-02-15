@@ -102,8 +102,8 @@ export default function CardWrapper(props){
     return (
         <section className='cards-wrapper'>
             {cards.map((card) =>(
-                <div className='card'>
-                        <Character onClick={() => {itemClicked(card.key)}} key={card.key} image={ card.image } alternative={card.alt} charHead={card.charHead} />
+                <div className='card' key={card.key} onClick={() => {itemClicked(card.key)}}>
+                        <Character  key={card.key} image={ card.image } alternative={card.alt} charHead={card.charHead} />
                 </div>
                 )
             )}
