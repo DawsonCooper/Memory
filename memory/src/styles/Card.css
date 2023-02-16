@@ -10,6 +10,20 @@
     border-radius: 10px;
     transition: all 0.15s linear;
 }
+.gen-btn{
+    background-color: black;
+    color: rgba(240, 46, 170);
+    border: 1px solid rgba(240, 46, 170);
+    cursor: pointer;
+    padding: .5rem;
+    font-size: 1.5rem;
+    font-family: 'Tourney', cursive;
+    
+}
+.gen-btn:hover{
+    background-color: rgba(240, 46, 170);
+    color: black;
+}
 
 @media (min-width: 1921px){
     .cards-wrapper{
