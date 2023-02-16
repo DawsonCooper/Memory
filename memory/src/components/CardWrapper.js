@@ -95,14 +95,13 @@ export default function CardWrapper(props){
     let cardArray = [];
     
     let tempArr = [];
-    let tempCountry = [] 
+    let tempCountry = [];
     const getCountries = () => {
         modCards(cardsBaseCase)
-        tempCountry = []
         Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
             (response) => {
                 if (response.status === 200){
-                     
+                    tempArr = [];
                     // Get countries name and thier flags
                     for(let i = 0; i < 12; i++){
                         let random = Math.floor(Math.random() * response.data.data.length)
@@ -111,6 +110,8 @@ export default function CardWrapper(props){
                         }
 
                     }
+                    console.log(tempArr)
+                    tempCountry = [];
                     for(let i = 0; i < tempArr.length; i++){
                         tempCountry.push(response.data.data[tempArr[i]]);
                         tempCountry[i].key = i;
@@ -119,19 +120,19 @@ export default function CardWrapper(props){
                         }).then(response => {
                             response.data.data.capital ? tempCountry[i].capital = response.data.data.capital :  tempCountry[i].capital = "No defined capital";
                             tempCountry[i].punc = ","
+                            if (i === tempArr.length - 1){
+                                setTimeout(() => {
+                                    console.log(tempCountry)
+                                    cardArray = tempCountry
+                                    modCards(tempCountry)
+                                }, 250)
+                                
+                            }
                         })
                     }
-                    // GET EXISTING COUNTRYS CAPITALS AND ADD TO COUNTRY ARR
-
-
-                            
-                }
-                setTimeout(() => {
-                    cardArray = tempCountry
-                    modCards(tempCountry)
-                }, 500)
-                 
-            })           
+                }                
+            })
+            console.log('------------------------------')           
     }
     
     
@@ -156,7 +157,11 @@ export default function CardWrapper(props){
         }
         console.log('------------------------------')
     },[score, best])
-    
+    useEffect(() => {
+        console.log('Mount')
+        getCountries()
+        console.log('------------------------------')
+    },[])
     return (
         <>
         <button onClick={getCountries} className='gen-btn'>Generate countries</button>
