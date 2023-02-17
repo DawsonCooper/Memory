@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Character from './Character';
 import '../styles/Card.css';
 import Axios from 'axios';
-
 export default function CardWrapper(props){
     let cardsBaseCase = [{
         capital: "",
@@ -93,49 +92,6 @@ export default function CardWrapper(props){
     
     const [cards, modCards] = useState(cardsBaseCase)
     let cardArray = [];
-    
-    let tempArr = [];
-    let tempCountry = [];
-    const getCountries = () => {
-        modCards(cardsBaseCase)
-        Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
-            (response) => {
-                if (response.status === 200){
-                    tempArr = [];
-                    // Get countries name and thier flags
-                    for(let i = 0; i < 12; i++){
-                        let random = Math.floor(Math.random() * response.data.data.length)
-                        if (!tempArr.includes(random)){
-                            tempArr.push(random);
-                        }
-
-                    }
-                    console.log(tempArr)
-                    tempCountry = [];
-                    for(let i = 0; i < tempArr.length; i++){
-                        tempCountry.push(response.data.data[tempArr[i]]);
-                        tempCountry[i].key = i;
-                        Axios.post('https://countriesnow.space/api/v0.1/countries/capital', {
-                            "country": tempCountry[i].name
-                        }).then(response => {
-                            response.data.data.capital ? tempCountry[i].capital = response.data.data.capital :  tempCountry[i].capital = "No defined capital";
-                            tempCountry[i].punc = ","
-                            if (i === tempArr.length - 1){
-                                setTimeout(() => {
-                                    console.log(tempCountry)
-                                    cardArray = tempCountry
-                                    modCards(tempCountry)
-                                }, 250)
-                                
-                            }
-                        })
-                    }
-                }                
-            })
-            console.log('------------------------------')           
-    }
-    
-    
     useEffect(() => {
         console.log('useEffect')
         
@@ -162,6 +118,52 @@ export default function CardWrapper(props){
         getCountries()
         console.log('------------------------------')
     },[])
+    let tempArr = [];
+    let tempCountry = [];
+    function getCapitals(i) {
+        Axios.post('https://countriesnow.space/api/v0.1/countries/capital', {
+                "country": tempCountry[i].name
+            }).then(response => {
+                response.data.data.capital ? tempCountry[i].capital = response.data.data.capital :  tempCountry[i].capital = "No defined capital";
+                tempCountry[i].punc = ","
+                if (i === tempArr.length - 1){
+                    setTimeout(() => {
+                        console.log(tempCountry)
+                        cardArray = tempCountry
+                        modCards(tempCountry)
+                    }, 100)
+                    
+                }
+            }).catch(error => {console.log(error)});
+    }
+    const getCountries = () => {
+        modCards(cardsBaseCase)
+        Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
+            (response) => {
+                if (response.status === 200){
+                    tempArr = [];
+                    // Get countries name and thier flags
+                    for(let i = 0; i < 12; i++){
+                        let random = Math.floor(Math.random() * response.data.data.length)
+                        if (!tempArr.includes(random)){
+                            tempArr.push(random);
+                        }
+                        
+                    }
+                    console.log(tempArr)
+                    tempCountry = [];
+                    for(let i = 0; i < tempArr.length; i++){
+                        tempCountry.push(response.data.data[tempArr[i]]);
+                        tempCountry[i].key = i;
+                        getCapitals(i)
+                    }
+                }                
+            })
+            console.log('------------------------------')           
+    }
+    
+    
+    
     return (
         <>
         <button onClick={getCountries} className='gen-btn'>Generate countries</button>
