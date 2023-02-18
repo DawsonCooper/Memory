@@ -6,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 //import App from "./App";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <RouteSwitch />
+    <React.StrictMode>
+        <RouteSwitch />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
