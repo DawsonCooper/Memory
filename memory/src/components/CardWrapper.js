@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Character from './Character';
 import '../styles/Card.css';
 import Axios from 'axios';
+
 export default function CardWrapper(props){
     let cardsBaseCase = [{
         capital: "",
@@ -90,7 +91,7 @@ export default function CardWrapper(props){
 
     const {score, best, itemClicked} = props
     
-    const [cards, modCards] = useState(cardsBaseCase)
+    const [cards, setCards] = useState(cardsBaseCase)
     let cardArray = [];
     useEffect(() => {
         console.log('useEffect')
@@ -109,7 +110,7 @@ export default function CardWrapper(props){
                 [arr[currentIndex], arr[randomIndex]] = [
                   arr[randomIndex], arr[currentIndex]];
             }
-            modCards(arr)
+            setCards(arr)
         }
         console.log('------------------------------')
     },[score, best])
@@ -130,14 +131,14 @@ export default function CardWrapper(props){
                     setTimeout(() => {
                         console.log(tempCountry)
                         cardArray = tempCountry
-                        modCards(tempCountry)
+                        setCards(tempCountry)
                     }, 100)
                     
                 }
             }).catch(error => {console.log(error)});
     }
     const getCountries = () => {
-        modCards(cardsBaseCase)
+        setCards(cardsBaseCase)
         Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
             (response) => {
                 if (response.status === 200){
@@ -166,11 +167,11 @@ export default function CardWrapper(props){
     
     return (
         <>
-        <button onClick={getCountries} className='gen-btn'>Generate countries</button>
+        <button onClick={getCountries} className='cust-btn'>Generate countries</button>
         <section className='cards-wrapper'>
             
             {cards.map((card) =>(
-                <div className='card' key={card.key} onClick={() => {itemClicked(card.key)}}>
+                <div className='memory-card' key={card.key} onClick={() => {itemClicked(card.key)}}>
                         <Character  key={card.key} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
                 </div>
                 )

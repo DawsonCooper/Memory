@@ -11,7 +11,7 @@ img{
 
 .character-wrapper{
     height: 35vh;
-    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
     padding: 1rem;
     background-color: white;
     display: flex;
@@ -28,6 +28,9 @@ img{
 .character-wrapper:hover{
     opacity: 1;
     box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+.char-head{
+    font-family: 'Tourney', cursive !important;
 }
 @media (max-width: 768px){
     .character-wrapper{

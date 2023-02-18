@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 }
-.card{
+.memory-card{
     display: flex;
     justify-content: center;
     margin: 1rem;
@@ -10,7 +10,7 @@
     border-radius: 10px;
     transition: all 0.15s linear;
 }
-.gen-btn{
+.cust-btn{
     background-color: black;
     color: rgba(240, 46, 170);
     border: 1px solid rgba(240, 46, 170);
@@ -20,7 +20,7 @@
     font-family: 'Tourney', cursive;
     
 }
-.gen-btn:hover{
+.cust-btn:hover{
     background-color: rgba(240, 46, 170);
     color: black;
 }

@@ -1,0 +1,32 @@
+.win{
+    display: flex;
+    width: 50vw;
+}
+.lost{
+    width: 50vw;
+    display: block;
+}
+
+@media(max-width:900px){
+    .win{
+        width: 100%;
+    }
+    .lost{
+        width: 100%;
+    }
+}
+
+.modal-btn{
+    background-color: black;
+    color: rgba(240, 46, 170);
+    border: 1px solid rgba(240, 46, 170);
+    cursor: pointer;
+    padding: .5rem;
+    font-size: 1rem;
+    font-family: 'Tourney', cursive;
+    
+}
+.modal-btn:hover{
+    background-color: rgba(240, 46, 170);
+    color: black;
+}

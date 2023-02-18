@@ -3,6 +3,26 @@
     color: rgba(240, 46, 170);
 }
 .memory-sort-header{
+    font-size: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.grid-sort{
+    display: grid;
+    grid-template-columns: 75%;
+    justify-content: center;
     text-align: center;
-    font-size: 2rem;
+    padding-left: 0;
+    gap: 10px;
+    margin-bottom: 1vh;
+}
+.off{
+    display: none;
+}
+.grid-cell-sort{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
