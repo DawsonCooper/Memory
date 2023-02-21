@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import Header from "./components/Header";
-
+import App from "./App";
 afterEach(cleanup);
 //describe('App Component', () => {
 //  it('renders a mixed list of countries', () =>{
@@ -20,6 +20,6 @@ afterEach(cleanup);
 //});
 
 it('displays title', () => {
-  const { getByTestId, getByText } = render(<Header />)
+  const { getByTestId, getByText } = render(<App />)
   expect(getByTestId('home-title')).toHaveTextContent('Memory  Game')
 })

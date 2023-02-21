@@ -37,4 +37,8 @@ img{
         height: 40vh;
         width: 65vw;
     }
+    .character-wrapper:hover{
+        opacity: .8;
+        box-shadow: none;
+    }
 }
