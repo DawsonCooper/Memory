@@ -8,7 +8,7 @@ export default function Header (props){
 
     return(
         <div className='header'>
-            <h2 data-testid="home-title">Memory Game</h2>
+            <h2 >Memory Game</h2>
             <Link to='/sort'>
                 <li>Memory Sort</li>
             </Link>
