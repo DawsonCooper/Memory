@@ -5,7 +5,7 @@ import MemorySortComponent from "./components/MemorySort/Sort";
 
 const RouteSwitch = () => {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <Routes>
         <Route exact path="/" element={<App />} />
         <Route exact path="/sort" element={<MemorySortComponent />} />
