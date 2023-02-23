@@ -161,8 +161,8 @@ export default function MemorySortComponent(props) {
                                 return(
                                     <Draggable key={card.key} draggableId={`${card.key}`} index={index}>
                                         {(provided) => (
-                                            <div className='grid-cell-sort' key={card.key} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                <SortChar  key={card.key} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
+                                            <div className='grid-cell-sort' key={card.key + 1} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                                <SortChar  key={card.key + 2} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
                                             </div> 
                                         )}
                                          

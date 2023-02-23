@@ -5,10 +5,10 @@ import MemorySortComponent from "./components/MemorySort/Sort";
 
 const RouteSwitch = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/sort" element={<MemorySortComponent />} />
+        <Route exact path="/" element={<App />} />
+        <Route exact path="/sort" element={<MemorySortComponent />} />
       </Routes>
     </BrowserRouter>
   );
