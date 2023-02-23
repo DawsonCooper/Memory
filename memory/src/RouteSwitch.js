@@ -7,8 +7,8 @@ const RouteSwitch = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route exact path="/" element={<App />} />
-        <Route exact path="/sort" element={<MemorySortComponent />} />
+        <Route path="/" element={<App />} />
+        <Route path="/sort" element={<MemorySortComponent />} />
       </Routes>
     </HashRouter>
   );
