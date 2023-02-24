@@ -1,0 +1,35 @@
+
+.menu-container{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 33vw;
+    background-color: black;
+    border: 2px solid rgba(240, 46, 170); 
+    z-index: 99;
+    padding-top: 1rem;
+    text-align: center;
+}
+.menu-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+a{
+    color: rgba(240, 46, 170) !important;
+    text-decoration: none !important;
+}
+svg{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+@media(max-width: 767px){
+    .menu-container{
+        width: 66vw;
+    }
+    svg{
+        right: 30px;
+    }
+}

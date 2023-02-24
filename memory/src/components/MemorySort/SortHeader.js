@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import FinishModal from './FinishModal';
 import LostModal from './LostModal';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Link } from 'react-router-dom';
-
+import Menu from '../Menu/Menu';
+import '../../styles/Menu/MenuContent.css';
 export default function SortHeader(props) {
     const {newCards, ogOrder, shuffle} = props;
     const [winStatus, setWinStatus] = useState('off');
@@ -28,9 +28,7 @@ export default function SortHeader(props) {
     return(
         <div className='sort-header d-flex flex-column align-items-center mb-3'>
             <h2 className="memory-sort-header mb-2">Memory Sort</h2>
-            <Link to='/'>
-                <li className='mb-2'>Memory Shuffle</li>
-            </Link>
+            <Menu />
             <div className='sort-btn-container text-center'>
                 <button className="shuffle-cards cust-btn" onClick={(e) => shuffle(e)}>Start</button>
                 <button className='submit-cards off cust-btn' data-toggle="modal" data-target="#exampleModalCenter" onClick={checkwinStatus}>Finished!</button>
