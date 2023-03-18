@@ -9,9 +9,7 @@ export default function FinishModal(props){
               <div className="modal-content cust-modal">
                 <div className="modal-header">
                   <h5 id="exampleModalLongTitle">You Won!</h5>
-                  <button type="button" className="modal-btn" onClick={props.closeModal} aria-label="Close">
-                    <span aria-hidden="true">x</span>
-                  </button>
+                  
                 </div>
                 <div className="modal-body">
                   You sorted the countries in the right order!

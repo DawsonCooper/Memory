@@ -8,6 +8,7 @@ export default function MemorySortComponent(props) {
     const [cards, setCards] = useState([{}]);
     const [ogOrder, setOgOrder] = useState([]);
     const [newCards, setNewCards] = useState([{}]);
+    const [start, setStart] = useState(true);
     let cardsBaseCase = [{
         capital: "",
         name: "",
@@ -88,6 +89,7 @@ export default function MemorySortComponent(props) {
     }
     const getCountries = () => {
         setCards(cardsBaseCase)
+        setStart(!start)
         Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
             (response) => {
                 if (response.status === 200){
@@ -113,7 +115,7 @@ export default function MemorySortComponent(props) {
     }
 
     function shuffle(e) {
-        
+        setStart(true)
         e.target.nextSibling.classList.remove('off')
         e.target.classList.add('off')
         setOgOrder(cards);
@@ -146,38 +148,51 @@ export default function MemorySortComponent(props) {
         setNewCards(items)
     }
 
-    return (
-        <div className="memory-sort-container">
-            <div className={'memory-sort-header'} >
-            <SortHeader restart={getCountries} shuffle={shuffle} newCards={newCards} ogOrder={ogOrder} />
-            </div>
+    const gameStarted = (
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId='grid-cell-sort'>
                     {(provided) => 
                     (
-                        
-                            <ul {...provided.droppableProps} ref={provided.innerRef} className='grid-sort' >
-                            {cards.map((card, index) => {
-                                return(
-                                    <Draggable key={card.key} draggableId={`${card.key}`} index={index}>
-                                        {(provided) => (
-                                            <div className='grid-cell-sort' key={card.key + 1} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-                                                <SortChar  key={card.key + 2} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
-                                            </div> 
-                                        )}
-                                         
-                                    </Draggable>
-                                )
-                                
-                                }
-                            )}
-                            {provided.placeholder}
-                            </ul>
+                        <ul {...provided.droppableProps} ref={provided.innerRef} className='grid-sort' >
+                        {cards.map((card, index) => {
+                            return(
+                                <Draggable key={card.key} draggableId={`${card.key}`} index={index}>
+                                    {(provided) => (
+                                        <div className='grid-cell-sort' key={card.key + 1} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                            <SortChar  key={card.key + 2} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
+                                        </div> 
+                                    )}
+                                     
+                                </Draggable>
+                            )
+                                    
+                            }
+                        )}
+                        {provided.placeholder}
+                        </ul>
                     )
                 }
                     
                 </Droppable>
             </DragDropContext>
+        )
+    
+    const gameNotStarted = (
+        <ul className='grid-sort'>
+            {cards.map(card =>{
+                return (
+                <div className='grid-cell-sort' key={card.key + 1}>
+                    <SortChar  key={card.key + 2} image={ card.flag } alternative={`${card.capital}${card.punc} ${card.name}`} charHead={`${card.capital}${card.punc} ${card.name}`} />
+                </div> )
+            })}
+        </ul>
+    )
+    return (
+        <div className="memory-sort-container">
+            <div className={'memory-sort-header'} >
+            <SortHeader restart={getCountries} shuffle={shuffle} newCards={newCards} ogOrder={ogOrder} setStart={setStart} />
+            </div>
+            {start ? gameStarted : gameNotStarted}
 
         </div>
     )

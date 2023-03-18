@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/Character.css'
+import '../../styles/Character.css'
 // This function will be the character (image and name) we will nest each one inside styled cards
 
 export default function Character (props){

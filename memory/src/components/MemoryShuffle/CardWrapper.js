@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Character from './Character';
-import '../styles/Card.css';
+import '../../styles/Card.css';
 import Axios from 'axios';
-
+import {ScoreContext} from '../../App'
 export default function CardWrapper(props){
     let cardsBaseCase = [{
         capital: "",
@@ -88,8 +88,9 @@ export default function CardWrapper(props){
         flag: "",
         punc: ''
     }]
+    const scoreContext = useContext(ScoreContext)
 
-    const {score, best, itemClicked} = props
+    const { best, itemClicked} = props
     
     const [cards, setCards] = useState(cardsBaseCase)
     let cardArray = [];
@@ -113,7 +114,7 @@ export default function CardWrapper(props){
             setCards(arr)
         }
         console.log('------------------------------')
-    },[score, best])
+    },[scoreContext.scoreState, best])
     useEffect(() => {
         console.log('Mount')
         getCountries()
@@ -141,6 +142,7 @@ export default function CardWrapper(props){
         setCards(cardsBaseCase)
         Axios.get("https://countriesnow.space/api/v0.1/countries/flag/images").then(
             (response) => {
+                scoreContext.scoreDispatch({type: 'newGame'})
                 if (response.status === 200){
                     tempArr = [];
                     // Get countries name and thier flags

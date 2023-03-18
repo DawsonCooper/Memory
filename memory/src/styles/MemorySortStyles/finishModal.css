@@ -30,3 +30,9 @@
     background-color: rgba(240, 46, 170);
     color: black;
 }
+.modal-header{
+    justify-content: center !important;
+}
+.modal-footer{
+    justify-content: center !important;
+}

@@ -5,7 +5,7 @@ export default function Gameboard(props){
     
     return (
     <div className="gameboard">
-        <Header score={props.score} personalBest={props.personalBest} />
+        <Header personalBest={props.personalBest} />
     </div>
     )
 }

@@ -31,6 +31,9 @@ svg{
     right: 10px;
     cursor: pointer;
 }
+h2 svg{
+    position: static;
+}
 @media(max-width: 767px){
     .menu-container{
         width: 0vw;
