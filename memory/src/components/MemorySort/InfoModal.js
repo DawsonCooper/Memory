@@ -32,7 +32,7 @@ export default function InfoModal(props){
             <div style={styles.modal}>
                 <h2>Rules:</h2>
                 <p style={styles.pText}>Memorize the order of the countries before you start the game. Once you click the start button the country cards will shuffle,
-                    drag and drop the country cards into the correct order then click finish. You will be old if you won or lost at the top of the screen then restart and try again.
+                    drag and drop the country cards into the correct order then click finish. You will be told if you won or lost at the top of the screen then restart and try again.
                 </p>
             </div>
         </div>
