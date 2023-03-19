@@ -193,7 +193,6 @@ export default function MemorySortComponent(props) {
             <SortHeader restart={getCountries} shuffle={shuffle} newCards={newCards} ogOrder={ogOrder} setStart={setStart} />
             </div>
             {start ? gameStarted : gameNotStarted}
-
         </div>
     )
 }

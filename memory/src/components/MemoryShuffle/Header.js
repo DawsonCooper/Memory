@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Scoreboard from './Scoreboard';
 import '../../styles/Header.css';
 import Menu from '../Menu/Menu';
-import InfoModal from './InfoModal'
+import InfoModal from './InfoModal';
+import { AnimatePresence } from 'framer-motion';
 // Simply a header since scoreboard will be here we will need to pass state from another comp into props so we can pass to scoreboard
 
 export default function Header (props){
@@ -13,7 +14,12 @@ export default function Header (props){
         setInfo(!info);
     }
     return(
-        <>{info ? <InfoModal clickInfo={clickInfo} /> : null }
+        <>
+        
+        <AnimatePresence initial={false} exitBeforeEnter={true} onExitComplete={() => null}>
+          {info ?  <InfoModal clickInfo={clickInfo} />: null }
+        </AnimatePresence>
+        
         <div className='header'>
             
             <div className='top-row'>
