@@ -1,7 +1,9 @@
 require('dotenv').config();
 const fs = require('fs');
-const fsa = require('fs/promises')
-console.log(process.env.USER);
+const fsa = require('fs/promises');
+const users = require('./users.js');
+
+//console.log(process.env.USER);
 
 const data = `All the world's a stage, and all the men and women merely players.`;
 const data2 = 'We are such stuff as dreams are made on.'
@@ -17,8 +19,6 @@ fs.writeFile('/Users/dawso/OdinProject/Memory/memory/src/node/newFile.txt', data
 
 ----------------------------------------------------------------
 */
-
-
 /*
 This does the same thing as the previous example but using promises instead
 ----------------------------------------------------------------
@@ -34,19 +34,16 @@ addToFile(data);
 
 ----------------------------------------------------------------
 */
-
-
 /*
 This add some new data only to an existing file
 ----------------------------------------------------------------
 
-fs.appendFile('/Users/dawso/OdinProject/Memory/memory/src/node/newFile.txt', data3 + '\n', err => {
+fs.appendFile('/Users/dawso/OdinProject/Memory/memory/src/node/newFile.txt', data3 + '\n', (err) => {
     if(err) console.log(err);
 })
 
 ----------------------------------------------------------------
 */
-
 /*
 This reads a file in utf8 format , then uses a callback with err and content as args then we just use the ternary operator to return the content or err
 ----------------------------------------------------------------
@@ -57,3 +54,5 @@ fs.readFile('/Users/dawso/OdinProject/Memory/memory/src/node/newFile.txt', 'utf8
 
 ----------------------------------------------------------------
 */
+
+console.log(users.users)
