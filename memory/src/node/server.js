@@ -2,8 +2,38 @@ require('dotenv').config();
 const fs = require('fs');
 const fsa = require('fs/promises');
 const users = require('./users.js');
-
+const http = require('http');
 //console.log(process.env.USER);
+const server = http.createServer((req, res) => {
+    console.log('-------- NEW REQUEST --------');
+    console.log(req.method);
+    console.log(req.url);
+    res.setHeader('Content-Type', 'text/html');
+    switch (req.url){
+        case '/home':
+            fs.readFile('./home.html', (err, data) => {
+                err ? console.log(err) : res.end(data); 
+            });  
+                     
+            break;
+        case '/shop':
+            fs.readFile('./shop.html', (err, data) => {
+                err ? console.log(err) : res.end(data);
+            }); 
+            
+            break;
+        default:
+            res.write('<div><h2 style="color:red">I AM NOT VALID</h2></div>');
+            res.end();
+        
+    }
+    
+})
+
+server.listen(3000, 'localhost', () => {
+    console.log('listening on port 3000');
+});
+
 
 const data = `All the world's a stage, and all the men and women merely players.`;
 const data2 = 'We are such stuff as dreams are made on.'
