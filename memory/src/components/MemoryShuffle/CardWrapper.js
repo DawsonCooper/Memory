@@ -3,6 +3,7 @@ import Character from './Character';
 import '../../styles/Card.css';
 import Axios from 'axios';
 import {ScoreContext} from '../../App'
+import { CardCountContext } from '../../App';
 export default function CardWrapper(props){
     let cardsBaseCase = [{
         capital: "",
@@ -89,8 +90,10 @@ export default function CardWrapper(props){
         punc: ''
     }]
     const scoreContext = useContext(ScoreContext)
+    const cardCountContext = useContext(CardCountContext)
 
-    const { best, itemClicked} = props
+
+    const { best, itemClicked } = props
     
     const [cards, setCards] = useState(cardsBaseCase)
     let cardArray = [];
@@ -115,13 +118,16 @@ export default function CardWrapper(props){
         }
         console.log('------------------------------')
     },[scoreContext.scoreState, best])
+
     useEffect(() => {
         console.log('Mount')
         getCountries()
         console.log('------------------------------')
     },[])
+
     let tempArr = [];
     let tempCountry = [];
+
     function getCapitals(i) {
         Axios.post('https://countriesnow.space/api/v0.1/countries/capital', {
                 "country": tempCountry[i].name
@@ -155,6 +161,7 @@ export default function CardWrapper(props){
                     }
                     console.log(tempArr)
                     tempCountry = [];
+                    cardCountContext.cardCountDispatch({count: tempArr.length})
                     for(let i = 0; i < tempArr.length; i++){
                         tempCountry.push(response.data.data[tempArr[i]]);
                         tempCountry[i].key = i;

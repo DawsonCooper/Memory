@@ -3,6 +3,7 @@ const fs = require('fs');
 const fsa = require('fs/promises');
 const users = require('./users.js');
 const http = require('http');
+const _ = require('lodash');
 //console.log(process.env.USER);
 const server = http.createServer((req, res) => {
     console.log('-------- NEW REQUEST --------');
@@ -10,23 +11,25 @@ const server = http.createServer((req, res) => {
     console.log(req.url);
     res.setHeader('Content-Type', 'text/html');
     switch (req.url){
-        case '/home':
+        case '/':
             fs.readFile('./home.html', (err, data) => {
-                err ? console.log(err) : res.end(data); 
+                err ? console.log(err) : res.statusCode = 200, res.end(data); 
             });  
                      
             break;
         case '/shop':
             fs.readFile('./shop.html', (err, data) => {
-                err ? console.log(err) : res.end(data);
+                
+                err ? console.log(err) : res.statusCode= 200, res.end(data);
             }); 
-            
             break;
         default:
-            res.write('<div><h2 style="color:red">I AM NOT VALID</h2></div>');
-            res.end();
-        
+                res.statusCode = 301;
+                res.setHeader('Location', '/');
+                res.end();
     }
+    console.log('-------- NEW LODASH --------');
+    
     
 })
 

@@ -4,6 +4,9 @@ import '../../styles/MemorySortStyles/sort.css';
 import SortChar from "./SortCharacter";
 import { DragDropContext, Droppable , Draggable } from 'react-beautiful-dnd'
 import SortHeader from "./SortHeader";
+import {Helmet} from 'react-helmet'
+
+
 export default function MemorySortComponent(props) {
     const [cards, setCards] = useState([{}]);
     const [ogOrder, setOgOrder] = useState([]);
@@ -189,6 +192,12 @@ export default function MemorySortComponent(props) {
     )
     return (
         <div className="memory-sort-container">
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Memory Games</title>
+                <link rel="canonical" href="https://dawsoncooper.github.io/Memory/" />
+                <meta name="description" content="Memory Games" />
+            </Helmet>
             <div className={'memory-sort-header'} >
             <SortHeader restart={getCountries} shuffle={shuffle} newCards={newCards} ogOrder={ogOrder} setStart={setStart} />
             </div>
