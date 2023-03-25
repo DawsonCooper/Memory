@@ -4,8 +4,22 @@ const fsa = require('fs/promises');
 const users = require('./users.js');
 const http = require('http');
 const _ = require('lodash');
+const express = require('express');
 //console.log(process.env.USER);
-const server = http.createServer((req, res) => {
+const app = express();
+app.listen(3000);
+app.get('/', (req, res) => {
+
+
+    res.send('<h2>Hello Home</h2>');
+})
+
+
+
+
+
+ /*-------------------- PURE NODE ROUTE HANDLING/SERVER SETUP  --------------------- 
+    const server = http.createServer((req, res) => {
     console.log('-------- NEW REQUEST --------');
     console.log(req.method);
     console.log(req.url);
@@ -36,6 +50,11 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
     console.log('listening on port 3000');
 });
+
+
+*/
+
+
 
 
 const data = `All the world's a stage, and all the men and women merely players.`;
