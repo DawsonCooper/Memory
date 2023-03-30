@@ -31,6 +31,24 @@ const cardCountReducer = (state, action) => {
 function App() {
   const [score, dispatch] = useReducer(scoreReducer, baseScore)
   const [cardCount, cardCountDispatch] = useReducer(cardCountReducer, baseCount)
+  const asyncTest = async (e) => {
+    e.preventDefault();
+    const testResponse = await fetch('/expressCheck');
+    const jsonTestResponse = await testResponse.json();
+    console.log(jsonTestResponse);
+    return !testResponse.status ? "Error" : jsonTestResponse;
+  }
+  const fetchTest = (e) => {
+    e.preventDefault();
+    fetch('/expressCheck', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+    }).then(response => response.json())
+      .then(result => console.log(result))
+      .catch(err => console.log(err));
+  }
   return (
     <ScoreContext.Provider value={{scoreState: score, scoreDispatch: dispatch}}>
       <CardCountContext.Provider value={{cardCountState: cardCount, cardCountDispatch: cardCountDispatch}}>
@@ -41,6 +59,15 @@ function App() {
                 <link rel="canonical" href="https://dawsoncooper.github.io/Memory/" />
                 <meta name="description" content="Memory Games" />
         </Helmet>
+        {/*
+        ---------------------------    These are our express buttons only work locally so commenting out    -------------------------------------- 
+        <form method="get" action="/" onClick={(e) => {asyncTest(e)}} >
+          <input type="submit" class='btn btn-primary mb-2' value='Express Async Await Function Test' />
+        </form>
+        <form method="get" action="/" onClick={(e) => {fetchTest(e)}}>
+          <input type="submit" class='btn btn-primary' value='Express Fetch Function Test' />
+        </form>
+        */}
           <Cards />
         </div>
       </CardCountContext.Provider>
