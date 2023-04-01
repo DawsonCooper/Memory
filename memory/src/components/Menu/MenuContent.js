@@ -46,7 +46,7 @@ export default function MenuContent(props){
                 <Link to='/sort'>
                     <div>Memory Sort</div>
                 </Link>
-                <Link to='/Login'>
+                <Link to='/login'>
                     <div>Login</div>
                 </Link>
                 
