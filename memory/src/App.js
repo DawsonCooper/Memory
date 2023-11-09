@@ -32,7 +32,7 @@ function App() {
   const [score, dispatch] = useReducer(scoreReducer, baseScore)
   const [cardCount, cardCountDispatch] = useReducer(cardCountReducer, baseCount)
 
-
+/*
   const asyncTest = async (e) => {
     e.preventDefault();
     const testResponse = await fetch('/expressCheck');
@@ -51,7 +51,7 @@ function App() {
       .then(result => console.log(result))
       .catch(err => console.log(err));
   }
-
+*/
   
   return (
     <ScoreContext.Provider value={{scoreState: score, scoreDispatch: dispatch}}>
