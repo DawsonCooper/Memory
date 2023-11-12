@@ -3,4 +3,17 @@
     height: 500px;
     width: 500px;
     background-color: white;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+}
+.cell{
+    background-color: rgb(228, 228, 228);
+}
+.cell-mine:hover{
+    background-color: red;
+
+}
+.cell-safe{
+    background-color: rgb(228, 228, 228);
 }
