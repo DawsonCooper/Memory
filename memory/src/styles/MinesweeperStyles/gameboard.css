@@ -10,10 +10,35 @@
 .cell{
     background-color: rgb(228, 228, 228);
 }
-.cell-mine:hover{
+.cell-mine{
     background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .cell-safe{
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(228, 228, 228);
 }
+#bomb{
+    position: static;
+}
+@keyframes explodeAnimation {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  .exploded {
+    animation: explodeAnimation 1s forwards;
+    cursor: default; /* Disable clicking after explosion */
+  }
