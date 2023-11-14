@@ -9,16 +9,17 @@
 }
 .cell{
     background-color: rgb(228, 228, 228);
+    user-select: none;
 }
 .cell-mine{
-    background-color: red;
+    
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
 .cell-safe{
-    color: black;
+    color: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,18 +28,18 @@
 #bomb{
     position: static;
 }
-@keyframes explodeAnimation {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-  
-  .exploded {
-    animation: explodeAnimation 1s forwards;
-    cursor: default; /* Disable clicking after explosion */
-  }
+.exposed-safe{
+  color: white;
+  background-color: green;
+}
+.exposed-mine{
+  background-color: red;
+}
+.exposed-bomb{
+  visibility: visible;
+}
+.hidden-bomb{
+  visibility: hidden;
+}
+
+

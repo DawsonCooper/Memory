@@ -1,11 +1,15 @@
 import React, {useState} from 'react';
 import '../../styles/MinesweeperStyles/gameboard.css';
+import MineCell from './MineCell.js';
+import SafeCell from './SafeCell.js';
 function MinesweeperBoard() {
   const height = 8;
   const width = 8;
   let mines = []
   let gameCells = []
-  // how we will handle exploding bombs
+  // how we will handle cell clicks
+
+
 
 
 
@@ -34,33 +38,13 @@ function MinesweeperBoard() {
 
       if (mines.includes(`${i}${j}`)){
         gameCells[i].push(
-        <div className='cell cell-mine' key={[i, j]}>
-
-        <svg id='bomb' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="40" height="40" fill="#000000">
-          {/* Bomb Body */}
-          <ellipse cx="32" cy="40" rx="24" ry="20" fill="#000000" />
-
-          {/* Fuse */}
-          <path d="M32 20 Q30 5 28 20" fill="#BDC3C7" />
-
-          {/* Eyes */}
-          <circle cx="24" cy="36" r="2" fill="#FF0000" />
-          <circle cx="40" cy="36" r="2" fill="#FF0000" />
-
-          {/* Mouth */}
-          <path d="M30 48 Q32 52 34 48" fill="#FF0000" stroke="#FF0000" stroke-width="2" />
-
-          {/* Warning Symbol */}
-          <text x="32" y="52" font-size="12" fill="#FF0000" text-anchor="middle" alignment-baseline="middle">
-            !
-          </text>
-        </svg>
-        </div>
+          <MineCell key={[i,j]} i={i} j={j} state={-1}/>
         )
       }
       else{
         gameCells[i].push(
-        <div className='cell cell-safe' key={[i, j]}>0</div>
+        <SafeCell key={[i,j]} i={i} j={j} count={0} state = {1}/>
+        
         )
       }
     }
@@ -76,48 +60,56 @@ function MinesweeperBoard() {
     let mine = gameCells[index[0]][index[1]];
 
     // these will be the index of all real neighbors out of bounds will remain 0 
-    let left = 0;
-    let right = 0;
-    let up = 0;
-    let down = 0;
-    let upLeft =0;
-    let upRight = 0;
-    let downLeft = 0;
-    let downRight = 0;
+    let left = undefined;
+    let right = undefined;
+    let up = undefined;
+    let down = undefined;
+    let upLeft =undefined;
+    let upRight = undefined;
+    let downLeft = undefined;
+    let downRight = undefined;
     
-    if (index[1]-1 < 8 && index[1]-1 > 0){
-      left = gameCells[index[0]][index[1]-1];
+    if (index[1]-1 < 8 && index[1]-1 >= 0){
+      left = [index[0], index[1]-1];
     }
-    if (index[1]+1 < 8 && index[1]+1 > 0){
-      right = gameCells[index[0]][index[1]+1];
+    if (index[1]+1 < 8 && index[1]+1 >= 0){
+      right = [index[0], index[1]+1];
     }
-    if (index[0]-1 < 8 && index[0]-1 > 0){
-      up = gameCells[index[0]-1][index[1]];
+    if (index[0]-1 < 8 && index[0]-1 >= 0){
+      up = [index[0]-1,index[1]];
     }
-    if (index[0]+1 < 8 && index[0]+1 > 0){
-      down = gameCells[index[0]+1][index[1]];
+    if (index[0]+1 < 8 && index[0]+1 >= 0){
+      down = [index[0]+1,index[1]];
     }
-    if (index[0]-1 < 8 && index[0]-1 > 0 && index[1]-1 < 8 && index[1]-1 > 0){
-      upLeft = gameCells[index[0]-1][index[1]-1];
+    if (index[0]-1 < 8 && index[0]-1 >= 0 && index[1]-1 < 8 && index[1]-1 >= 0){
+      upLeft = [index[0]-1,index[1]-1];
     }
-    if (index[0]-1 < 8 && index[0]-1 > 0 && index[1]+1 < 8 && index[1]+1 > 0){
-      upRight = gameCells[index[0]-1][index[1]+1];
+    if (index[0]-1 < 8 && index[0]-1 >= 0 && index[1]+1 < 8 && index[1]+1 >= 0){
+      upRight = [index[0]-1,index[1]+1];
     }
-    if (index[0]+1 < 8 && index[0]+1 > 0 && index[1]-1 < 8 && index[1]-1 > 0){
-      downLeft = gameCells[index[0]+1][index[1]-1];
+    if (index[0]+1 < 8 && index[0]+1 >= 0 && index[1]-1 < 8 && index[1]-1 >= 0){
+      downLeft = [index[0]+1,index[1]-1];
     }
-    if (index[0]+1 < 8 && index[0]+1 > 0 && index[1]+1 < 8 && index[1]+1 > 0){
-      downRight = gameCells[index[0]+1][index[1]+1];
+    if (index[0]+1 < 8 && index[0]+1 >= 0 && index[1]+1 < 8 && index[1]+1 >= 0){
+      downRight = [index[0]+1,index[1]+1];
     }
 
 
 
     
     let neighbors = [left, right, up, down, upLeft, upRight, downLeft, downRight];
+    // neighbors is a list of indexes that are neighbors to the mine and undefined if the neighbor is out of bounds
     for (let j = 0; j < neighbors.length; j++){
-      if (neighbors[j] !== 0){
-        if (neighbors[j].props.className === 'cell cell-safe'){
-          
+
+      let indexArr = neighbors[j];
+      // if the neighbor is in bounds and is a safe cell update its inner html to be the number of mines around it
+      if (indexArr !== undefined){
+        if (gameCells[indexArr[0]][indexArr[1]].props.state === 1){
+          console.log(gameCells[indexArr[0]][indexArr[1]])
+          let currCount = gameCells[indexArr[0]][indexArr[1]].props.count;
+          currCount++;
+          gameCells[indexArr[0]][indexArr[1]] = <SafeCell key={[indexArr[0],indexArr[1]]} i={indexArr[0]} j = {indexArr[1]} count = {currCount} state={1} />
+          console.log(gameCells[indexArr[0]][indexArr[1]])
         }
       } 
     }
